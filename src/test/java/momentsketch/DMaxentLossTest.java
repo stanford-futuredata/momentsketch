@@ -4,6 +4,8 @@ import momentsketch.optimizer.GenericOptimizer;
 import momentsketch.optimizer.NewtonOptimizer;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class DMaxentLossTest {
@@ -21,16 +23,10 @@ public class DMaxentLossTest {
     public void testSimple() {
         double n = 20;
         double l0Val = Math.log(1.0/n);
-        double[] d_mus = {1.0,
-                -0.036385415351349155,
-                -0.3797997584470583,
-                -0.2813126443858713,
-                -0.20151878947224125,
-                0.28142650305785244,
-                0.3048870519189435,
-                0.0948598373785825,
-                -0.20775003640967618,
-                -0.2007608393963255};
+        double[] d_mus = {
+                1.        , -0.06277785, -0.4079572 , -0.26898716, -0.1348974 ,
+                0.34909762,  0.28072058, -0.00188146, -0.27568291, -0.17049106
+        };
         DMaxentLoss P = new DMaxentLoss(
                 d_mus,
                 21
@@ -45,13 +41,14 @@ public class DMaxentLossTest {
         optimizer.setVerbose(false);
 
         long startTime, endTime;
-        int numIter = 3000000;
+        int numIter = 1;
         startTime = System.nanoTime();
         for (int i = 0; i < numIter; i++) {
             l0 = optimizer.solve(l0, 1e-6);
         }
         endTime = System.nanoTime();
         double elapsed = (endTime - startTime) / (1.0*numIter);
-        System.out.println(elapsed);
+
+        assertEquals(-3.6, l0[1], .5);
     }
 }

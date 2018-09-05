@@ -87,6 +87,10 @@ public class DMaxentLoss implements FunctionWithHessian  {
         }
     }
 
+    public double[] getWeights() {
+        return weights;
+    }
+
     @Override
     public int dim() {
         return dim;
