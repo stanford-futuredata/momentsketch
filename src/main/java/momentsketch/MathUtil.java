@@ -112,7 +112,6 @@ public class MathUtil {
         return scaledChebyMoments;
     }
 
-
     public static double arrayMean(double[] xs) {
         double sum = 0.0;
         for (double x : xs) {

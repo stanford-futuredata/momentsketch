@@ -8,7 +8,7 @@ public class MomentSolver {
     private double xCenter, xScale;
     private double xMin, xMax;
 
-    private int gridSize = 21;
+    private int gridSize = 51;
     private int maxIter = 15;
     private boolean verbose = false;
 
@@ -60,7 +60,27 @@ public class MomentSolver {
     }
 
     public double getQuantile(double p) {
-        return 0.0;
+        double[] cdf = new double[gridSize];
+        cdf[0] = 0.0;
+        for (int i = 1 ; i < gridSize; i++) {
+            cdf[i] = cdf[i-1] + weights[i];
+        }
+
+        double lastRank = 0.0;
+        double curRank = 0.0;
+
+        int targetIdx = gridSize - 1;
+        for (int curIdx = 0; curIdx < gridSize; curIdx++) {
+            lastRank = curRank;
+            curRank = cdf[curIdx];
+            if (curRank >= p) {
+                targetIdx = curIdx;
+                break;
+            }
+        }
+
+        double q = xs[targetIdx];
+        return q;
     }
     public double[] getXs() {
         return xs;

@@ -3,8 +3,6 @@ package momentsketch;
 import momentsketch.optimizer.FunctionWithHessian;
 import org.apache.commons.math3.util.FastMath;
 
-import java.util.Arrays;
-
 public class DMaxentLoss implements FunctionWithHessian  {
     protected int dim;
     protected int nGrid;
