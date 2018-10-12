@@ -1,8 +1,6 @@
 package momentsketch;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.apache.commons.math3.transform.TransformType;
-import org.apache.commons.math3.util.FastMath;
 
 import java.util.Arrays;
 

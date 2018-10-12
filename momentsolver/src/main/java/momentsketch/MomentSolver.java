@@ -31,6 +31,9 @@ public class MomentSolver {
     public void setGridSize(int gs) {
         gridSize = gs;
     }
+    public void setMaxIter(int maxIter) {
+        this.maxIter = maxIter;
+    }
     public void setVerbose(boolean flag) {
         verbose = flag;
     }
