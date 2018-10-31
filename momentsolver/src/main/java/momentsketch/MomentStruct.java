@@ -1,9 +1,14 @@
 package momentsketch;
 
-import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * Structure for storing a Moments Sketch.
+ */
 public class MomentStruct {
+    // Unlike in the paper we only store power sums here and omit log moments
+    // When the data can be skewed or have outliers one should preprocess the data using either
+    // a log transform or an arcsinh transform beforehand.
     public double[] power_sums;
     public double min, max;
 
