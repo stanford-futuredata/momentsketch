@@ -3,14 +3,25 @@ package momentsketch;
 import momentsketch.optimizer.FunctionWithHessian;
 import org.apache.commons.math3.util.FastMath;
 
+/**
+ * Maximum entropy loss function we can optimize using Newton's method
+ * to estimate underlying distributions from their moments.
+ *
+ * This loss operates over distributions with a gridded support.
+ */
 public class DMaxentLoss implements FunctionWithHessian  {
     protected int dim;
+    // Number of grid points
     protected int nGrid;
+    // Number of moments
     protected double[] d_mus;
 
+    // Grid point support of the distribution
     protected double[] xs;
+    // Cached chebyshev polynomial values at grid points
     protected double[][] cpVals;
 
+    // Coefficients for expression weights using chebyshev polynomials
     protected double[] lambd;
     protected double[] weights;
     protected double[] mus;

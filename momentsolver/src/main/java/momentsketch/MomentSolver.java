@@ -3,12 +3,15 @@ package momentsketch;
 import momentsketch.optimizer.GenericOptimizer;
 import momentsketch.optimizer.NewtonOptimizer;
 
+/**
+ * Interface for estimating quantiles given the statistics in a MomentStruct.
+ */
 public class MomentSolver {
     private double[] c_moments;
     private double xCenter, xScale;
     private double xMin, xMax;
 
-    private int gridSize = 51;
+    private int gridSize = 1024;
     private int maxIter = 15;
     private boolean verbose = false;
 
@@ -28,9 +31,20 @@ public class MomentSolver {
         );
     }
 
+    /**
+     * By increasing the number of grid points the estimates will be more precise
+     * but more expensive to compute. Accuracy is still limited by the number of
+     * known moments. Usually 1024 is a safe default.
+     * @param gs number of grid points
+     */
     public void setGridSize(int gs) {
         gridSize = gs;
     }
+
+    /**
+     *
+     * @param maxIter maximum number of steps of optimization
+     */
     public void setMaxIter(int maxIter) {
         this.maxIter = maxIter;
     }
@@ -38,6 +52,11 @@ public class MomentSolver {
         verbose = flag;
     }
 
+    /**
+     * Run an optimization routine to solve for the best-fit distribution
+     * given the statistics in a moments sketch. Call solve() before attempting
+     * to extract quantiles using getQuantile(p).
+     */
     public void solve() {
         int n = gridSize;
         DMaxentLoss P = new DMaxentLoss(c_moments, gridSize);
@@ -62,6 +81,10 @@ public class MomentSolver {
         }
     }
 
+    /**
+     * @param p desired quantile 0 <= p <= 1
+     * @return the estimated quantile
+     */
     public double getQuantile(double p) {
         double[] cdf = new double[gridSize];
         cdf[0] = 0.0;
@@ -85,9 +108,17 @@ public class MomentSolver {
         double q = xs[targetIdx];
         return q;
     }
+
+    /**
+     * @return grid points used in estimating the data distribution
+     */
     public double[] getXs() {
         return xs;
     }
+
+    /**
+     * @return estimated distribution of data across grid points
+     */
     public double[] getWeights() {
         return weights;
     }

@@ -1,7 +1,11 @@
 package momentsketch;
 
-import java.nio.ByteBuffer;
 
+/**
+ * Example wrapper class for exposing an approximate quantiles sketch API
+ * Uses the MomentSolver and MomentStruct internally and optionally compressed
+ * the input range using arcsinh.
+ */
 public class SimpleMomentSketch {
     public MomentStruct data;
     // Whether we use arcsinh to compress the range
@@ -54,11 +58,6 @@ public class SimpleMomentSketch {
         data.merge(other.data);
     }
 
-    public byte[] toByteArray() {
-        ByteBuffer bb = ByteBuffer.allocate(Integer.BYTES+(data.power_sums.length+2)*Double.BYTES);
-        return toBytes(bb).array();
-    }
-
     public MomentSolver getSolver() {
         MomentSolver ms = new MomentSolver(data);
         return ms;
@@ -77,32 +76,6 @@ public class SimpleMomentSketch {
         }
 
         return quantiles;
-    }
-
-    public ByteBuffer toBytes(ByteBuffer bb) {
-        bb.putInt(data.power_sums.length);
-        bb.putDouble(data.min);
-        bb.putDouble(data.max);
-        for (double x : data.power_sums) {
-            bb.putDouble(x);
-        }
-        return bb;
-    }
-
-    public static SimpleMomentSketch fromBytes(ByteBuffer bb) {
-        int k = bb.getInt();
-        MomentStruct m = new MomentStruct(k);
-        m.min = bb.getDouble();
-        m.max = bb.getDouble();
-        for (int i = 0; i < k; i++) {
-            m.power_sums[i] = bb.getDouble();
-        }
-        return new SimpleMomentSketch(m);
-    }
-
-    public static SimpleMomentSketch fromByteArray(byte[] input) {
-        ByteBuffer bb = ByteBuffer.wrap(input);
-        return fromBytes(bb);
     }
 
     public String toString() {

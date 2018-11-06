@@ -3,15 +3,22 @@ package momentsketch;
 import java.util.Arrays;
 
 /**
- * Structure for storing a Moments Sketch.
+ * Structure for storing the statistics in a Moments Sketch.
+ *
+ * Unlike in the paper we only store power sums here and omit log moments.
+ * When the data can be skewed or have outliers one should preprocess the data using either
+ * a log transform or an arcsinh transform beforehand.
  */
 public class MomentStruct {
-    // Unlike in the paper we only store power sums here and omit log moments
-    // When the data can be skewed or have outliers one should preprocess the data using either
-    // a log transform or an arcsinh transform beforehand.
     public double[] power_sums;
     public double min, max;
 
+    /**
+     * Initialize a sketch with pre-computed statistics
+     * @param pSums sums of powers of data values sum x^i starting with the count i=0
+     * @param min the minimum observed value
+     * @param max the maximum observed value
+     */
     public MomentStruct(
             double[] pSums, double min, double max
     ) {
@@ -20,6 +27,9 @@ public class MomentStruct {
         this.max = max;
     }
 
+    /**
+     * @param k number of moments to track. 2 <= k <= 20 is the useful range.
+     */
     public MomentStruct(
             int k
     ) {
@@ -28,6 +38,9 @@ public class MomentStruct {
         this.max = -Double.MAX_VALUE;
     }
 
+    /**
+     * @param x value to add to the sketch
+     */
     public void add(double x) {
         if (x < min) {
             min = x;
@@ -49,6 +62,9 @@ public class MomentStruct {
         }
     }
 
+    /**
+     * @param other existing moment sketch structure to aggregate into current structure
+     */
     public void merge(MomentStruct other) {
         if (other.min < min) {
             this.min = other.min;
