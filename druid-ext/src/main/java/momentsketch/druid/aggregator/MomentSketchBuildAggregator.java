@@ -2,7 +2,6 @@ package momentsketch.druid.aggregator;
 
 import io.druid.query.aggregation.Aggregator;
 import io.druid.segment.ColumnValueSelector;
-import momentsketch.MomentStruct;
 import momentsketch.druid.MomentSketchWrapper;
 
 public class MomentSketchBuildAggregator implements Aggregator {

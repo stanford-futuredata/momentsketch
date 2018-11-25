@@ -2,6 +2,7 @@ package momentsketch.druid.aggregator;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.stanfordfuturedata.momentsketch.MomentStruct;
 import com.google.common.collect.Lists;
 import io.druid.data.input.Row;
 import io.druid.initialization.DruidModule;
@@ -12,7 +13,6 @@ import io.druid.java.util.common.guava.Sequences;
 import io.druid.query.aggregation.AggregationTestHelper;
 import io.druid.query.groupby.GroupByQueryConfig;
 import io.druid.query.groupby.GroupByQueryRunnerTest;
-import momentsketch.MomentStruct;
 import momentsketch.druid.MomentSketchModule;
 import momentsketch.druid.MomentSketchWrapper;
 import org.junit.Rule;

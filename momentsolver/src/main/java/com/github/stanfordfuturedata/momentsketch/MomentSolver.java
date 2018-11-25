@@ -1,7 +1,7 @@
-package momentsketch;
+package com.github.stanfordfuturedata.momentsketch;
 
-import momentsketch.optimizer.GenericOptimizer;
-import momentsketch.optimizer.NewtonOptimizer;
+import com.github.stanfordfuturedata.momentsketch.optimizer.GenericOptimizer;
+import com.github.stanfordfuturedata.momentsketch.optimizer.NewtonOptimizer;
 
 /**
  * Interface for estimating quantiles given the statistics in a MomentStruct.
@@ -82,7 +82,7 @@ public class MomentSolver {
     }
 
     /**
-     * @param p desired quantile 0 <= p <= 1
+     * @param p desired quantile p in [0,1]
      * @return the estimated quantile
      */
     public double getQuantile(double p) {

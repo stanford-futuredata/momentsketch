@@ -1,4 +1,4 @@
-package momentsketch;
+package com.github.stanfordfuturedata.momentsketch;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class MomentStruct {
     }
 
     /**
-     * @param k number of moments to track. 2 <= k <= 20 is the useful range.
+     * @param k number of moments to track. [2,20] is the useful range.
      */
     public MomentStruct(
             int k

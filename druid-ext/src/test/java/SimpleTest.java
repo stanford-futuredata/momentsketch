@@ -1,5 +1,5 @@
+import com.github.stanfordfuturedata.momentsketch.MomentStruct;
 import org.junit.Test;
-import momentsketch.MomentStruct;
 
 public class SimpleTest {
     @Test

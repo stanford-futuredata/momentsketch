@@ -3,7 +3,6 @@ package momentsketch.druid;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import momentsketch.MomentStruct;
 
 import java.io.IOException;
 

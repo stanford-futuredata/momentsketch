@@ -1,4 +1,4 @@
-package momentsketch.optimizer;
+package com.github.stanfordfuturedata.momentsketch.optimizer;
 
 /**
  * Describes a function which can be optimized using Newton's method.

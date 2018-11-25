@@ -1,4 +1,4 @@
-package momentsketch;
+package com.github.stanfordfuturedata.momentsketch;
 
 public class MathUtil {
     public static long[][] getBinomials(int m) {
@@ -35,7 +35,7 @@ public class MathUtil {
      * @param powerSums original power sums
      * @param r scaling factor
      * @param xc translation value
-     * @return
+     * @return shifted and scaled power sums
      */
     public static double[] shiftPowerSum(
             double[] powerSums,

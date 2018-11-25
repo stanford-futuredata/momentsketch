@@ -1,7 +1,8 @@
 package momentsketch.druid;
 
-import momentsketch.MomentSolver;
-import momentsketch.MomentStruct;
+
+import com.github.stanfordfuturedata.momentsketch.MomentSolver;
+import com.github.stanfordfuturedata.momentsketch.MomentStruct;
 
 import java.nio.ByteBuffer;
 

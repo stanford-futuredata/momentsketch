@@ -1,4 +1,4 @@
-package momentsketch;
+package com.github.stanfordfuturedata.momentsketch;
 
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 import org.junit.Test;

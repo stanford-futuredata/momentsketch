@@ -1,4 +1,4 @@
-package momentsketch.optimizer;
+package com.github.stanfordfuturedata.momentsketch.optimizer;
 
 public interface GenericOptimizer {
     void setVerbose(boolean flag);

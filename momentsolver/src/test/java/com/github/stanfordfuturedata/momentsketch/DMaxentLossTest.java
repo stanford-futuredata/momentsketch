@@ -1,7 +1,7 @@
-package momentsketch;
+package com.github.stanfordfuturedata.momentsketch;
 
-import momentsketch.optimizer.GenericOptimizer;
-import momentsketch.optimizer.NewtonOptimizer;
+import com.github.stanfordfuturedata.momentsketch.optimizer.GenericOptimizer;
+import com.github.stanfordfuturedata.momentsketch.optimizer.NewtonOptimizer;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

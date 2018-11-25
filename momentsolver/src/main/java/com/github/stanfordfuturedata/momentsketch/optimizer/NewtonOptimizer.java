@@ -1,6 +1,6 @@
-package momentsketch.optimizer;
+package com.github.stanfordfuturedata.momentsketch.optimizer;
 
-import momentsketch.MathUtil;
+import com.github.stanfordfuturedata.momentsketch.MathUtil;
 import org.apache.commons.math3.linear.*;
 
 /**

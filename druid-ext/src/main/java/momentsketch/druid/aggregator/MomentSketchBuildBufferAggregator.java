@@ -1,10 +1,7 @@
 package momentsketch.druid.aggregator;
 
 import io.druid.query.aggregation.BufferAggregator;
-import io.druid.query.monomorphicprocessing.RuntimeShapeInspector;
 import io.druid.segment.ColumnValueSelector;
-import io.druid.segment.DoubleColumnSelector;
-import momentsketch.MomentStruct;
 import momentsketch.druid.MomentSketchWrapper;
 
 import java.nio.ByteBuffer;

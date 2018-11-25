@@ -1,4 +1,4 @@
-package momentsketch;
+package com.github.stanfordfuturedata.momentsketch;
 
 
 /**

@@ -1,6 +1,6 @@
-package momentsketch;
+package com.github.stanfordfuturedata.momentsketch;
 
-import momentsketch.optimizer.FunctionWithHessian;
+import com.github.stanfordfuturedata.momentsketch.optimizer.FunctionWithHessian;
 import org.apache.commons.math3.util.FastMath;
 
 /**
@@ -9,7 +9,7 @@ import org.apache.commons.math3.util.FastMath;
  *
  * This loss operates over distributions with a gridded support.
  */
-public class DMaxentLoss implements FunctionWithHessian  {
+public class DMaxentLoss implements FunctionWithHessian {
     protected int dim;
     // Number of grid points
     protected int nGrid;
