@@ -72,7 +72,11 @@ public class SimpleMomentSketch {
         double[] quantiles = new double[fractions.length];
         for (int i = 0; i < fractions.length; i++) {
             double rawQuantile = ms.getQuantile(fractions[i]);
-            quantiles[i] = Math.sinh(rawQuantile);
+            if (useArcSinh) {
+              quantiles[i] = Math.sinh(rawQuantile);
+            } else {
+              quantiles[i] = rawQuantile;
+            }
         }
 
         return quantiles;
