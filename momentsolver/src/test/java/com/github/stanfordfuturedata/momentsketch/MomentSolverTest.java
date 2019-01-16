@@ -3,6 +3,8 @@ package com.github.stanfordfuturedata.momentsketch;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class MomentSolverTest {
@@ -44,6 +46,11 @@ public class MomentSolverTest {
         p.setData(xVals);
         double truep90 = p.evaluate(90.0);
         assertEquals(truep90, q, 1.0);
+
+        double[] ps = {0, .1, .5, .9, 1.0};
+        double[] qs = ms.getQuantiles(ps);
+        assertEquals(0.0, qs[0], 1.0);
+        assertEquals(truep90, qs[3], 1.0);
     }
 
     @Test
@@ -64,7 +71,7 @@ public class MomentSolverTest {
         );
         long startTime = System.nanoTime();
 
-        int numIter = 1;
+        int numIter = 1000;
         MomentSolver ms = new MomentSolver(mData);
         ms.setGridSize(1024);
         for (int i = 0; i < numIter; i++) {
@@ -76,6 +83,10 @@ public class MomentSolverTest {
         double q = Math.exp(ms.getQuantile(.90));
         assertTrue(q < 100);
         assertTrue(q > 90);
+        double[] ps = {.9};
+        double[] qs = ms.getQuantiles(ps);
+        assertTrue(Math.exp(qs[0]) > 90);
+        assertTrue(Math.exp(qs[0]) < 100);
     }
 
     @Test

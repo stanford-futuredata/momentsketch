@@ -3,6 +3,8 @@ package com.github.stanfordfuturedata.momentsketch;
 import com.github.stanfordfuturedata.momentsketch.optimizer.GenericOptimizer;
 import com.github.stanfordfuturedata.momentsketch.optimizer.NewtonOptimizer;
 
+import java.util.Arrays;
+
 /**
  * Interface for estimating quantiles given the statistics in a MomentStruct.
  */
@@ -79,6 +81,42 @@ public class MomentSolver {
             double scaledX = i*2.0/(gridSize-1)-1.0;
             xs[i] = scaledX*xScale + xCenter;
         }
+    }
+
+    public double[] getQuantiles(double ps[]) {
+        double[] cdf = new double[gridSize];
+        cdf[0] = 0.0;
+        for (int i = 1 ; i < gridSize; i++) {
+            cdf[i] = cdf[i-1] + weights[i];
+        }
+
+        double[] qs = new double[ps.length];
+        for (int i = 0; i < ps.length; i++){
+            double p = ps[i];
+            int leftIdx = 0;
+            int rightIdx = gridSize-1;
+            if (p <= cdf[leftIdx]) {
+                qs[i] = xs[leftIdx];
+                continue;
+            }
+            if (cdf[rightIdx] <= p) {
+                qs[i] = xs[rightIdx];
+                continue;
+            }
+            while (true) {
+                if (rightIdx - leftIdx <= 1) {
+                    qs[i] = xs[rightIdx];
+                    break;
+                }
+                int midIdx = (leftIdx + rightIdx) / 2;
+                if (p <= cdf[midIdx]) {
+                    rightIdx = midIdx;
+                } else {
+                    leftIdx = midIdx;
+                }
+            }
+        }
+        return qs;
     }
 
     /**
