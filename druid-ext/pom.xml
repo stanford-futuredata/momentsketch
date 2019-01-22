@@ -20,7 +20,7 @@
         <dependency>
           <groupId>com.github.stanford-futuredata.momentsketch</groupId>
             <artifactId>momentsketch-solver</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.1.1</version>
         </dependency>
 
         <dependency>
